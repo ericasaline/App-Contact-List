@@ -1,6 +1,7 @@
 package com.app.contactlist.ui.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Surface
@@ -14,6 +15,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.contactlist.R
+import com.app.contactlist.ui.components.ContactCard
+import com.app.contactlist.ui.components.ContactListCards
 import com.app.contactlist.ui.components.SearchField
 import com.app.contactlist.ui.theme.ContactListTheme
 import com.app.contactlist.ui.theme.Green
@@ -23,8 +26,7 @@ fun HomeScreen() {
     Column(
         Modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp)
-            .verticalScroll(rememberScrollState()),
+            .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Spacer(modifier = Modifier)
@@ -45,6 +47,8 @@ fun HomeScreen() {
             onSearchChange = {text = it},
             Modifier.fillMaxWidth()
         )
+
+        ContactListCards()
 
         Spacer(modifier = Modifier)
     }
