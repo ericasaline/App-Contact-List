@@ -1,6 +1,8 @@
 package com.app.contactlist.ui.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -14,7 +16,7 @@ import androidx.compose.ui.unit.sp
 import com.app.contactlist.R
 import com.app.contactlist.model.Contact
 import com.app.contactlist.sampledata.sampleContacts
-import com.app.contactlist.ui.components.ContactListCards
+import com.app.contactlist.ui.components.ContactCard
 import com.app.contactlist.ui.components.SearchField
 import com.app.contactlist.ui.theme.ContactListTheme
 import com.app.contactlist.ui.theme.Green
@@ -46,7 +48,32 @@ fun HomeScreen(contacts: List<Contact>) {
             Modifier.fillMaxWidth()
         )
 
-        ContactListCards(sampleContacts)
+        val searchContact = remember(text) {
+            if(text.isNotBlank()) {
+                sampleContacts.filter { contact ->
+                    contact.name.contains(text, ignoreCase = true)
+                }
+            } else {
+                emptyList()
+            }
+        }
+
+        LazyColumn(
+            Modifier
+                .padding(top = 8.dp, bottom = 12.dp)
+                .fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            if(text.isBlank()) {
+                items(contacts) { c ->
+                    ContactCard(contact = c)
+                }
+            } else {
+                items(searchContact) { c ->
+                    ContactCard(contact = c)
+                }
+            }
+        }
 
         Spacer(modifier = Modifier)
     }
