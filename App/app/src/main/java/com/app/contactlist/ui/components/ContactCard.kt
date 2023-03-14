@@ -19,11 +19,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.app.contactlist.R
+import com.app.contactlist.model.Contact
 import com.app.contactlist.ui.theme.ContactListTheme
 import com.app.contactlist.ui.theme.Green
 
 @Composable
-fun ContactCard() {
+fun ContactCard(contact: Contact) {
     Surface(
         shape = RoundedCornerShape(80),
         elevation = 1.dp
@@ -35,7 +36,7 @@ fun ContactCard() {
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 AsyncImage(
-                    model = "https://cdn.pixabay.com/photo/2021/06/08/16/54/darth-vader-6321111_640.png",
+                    model = contact.image,
                     contentDescription = "Icon",
                     Modifier
                         .padding(start = 28.dp, top = 8.dp, bottom = 8.dp)
@@ -46,7 +47,7 @@ fun ContactCard() {
                 )
                 Column(Modifier.padding(start = 18.dp)) {
                     Text(
-                        text = "Luke Skywalker da Silva",
+                        text = contact.name,
                         fontSize = 18.sp,
                         fontFamily = FontFamily(Font(R.font.poppins_regular)),
                         color = Green,
@@ -65,7 +66,14 @@ fun ContactCard() {
 fun ContactCardPreview() {
     ContactListTheme {
         Surface {
-            ContactCard()
+            ContactCard(
+                Contact(
+                    name = "Luke Skywalker",
+                    email = "ladosombrio@email.com",
+                    number = "4002 89222",
+                    image = "https://cdn.pixabay.com/photo/2021/06/08/16/54/darth-vader-6321111_640.png"
+                )
+            )
         }
     }
 }
