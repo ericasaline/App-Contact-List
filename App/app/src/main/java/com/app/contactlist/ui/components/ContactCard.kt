@@ -43,7 +43,8 @@ fun ContactCard(contact: Contact) {
                         .size(50.dp)
                         .clip(shape = CircleShape),
                     contentScale = ContentScale.Crop,
-                    placeholder = painterResource(id = R.drawable.ic_icon_contact)
+                    placeholder = painterResource(id = R.drawable.ic_icon_contact),
+                    error = painterResource(id = R.drawable.ic_icon_contact)
                 )
                 Column(Modifier.padding(start = 18.dp)) {
                     Text(
