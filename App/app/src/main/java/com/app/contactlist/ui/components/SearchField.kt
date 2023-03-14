@@ -11,6 +11,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
@@ -24,13 +25,13 @@ fun SearchField(text: String, onSearchChange: (String) -> Unit, modifier: Modifi
         value = text,
         onValueChange = { onSearchChange(it) },
         modifier,
-        shape = RoundedCornerShape(80),
+        shape = RoundedCornerShape(20),
         singleLine = true,
         leadingIcon = { Icon(Icons.Default.Search, contentDescription = "Search Icon") },
         label = { Text(text = "Contact", fontFamily = FontFamily(Font(R.font.poppins_light))) },
         placeholder = { Text(text = "Search Contact...", fontFamily = FontFamily(Font(R.font.poppins_light))) },
         textStyle = TextStyle(color = Green, fontFamily = FontFamily(Font(R.font.poppins_regular)), fontSize = 18.sp),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text, imeAction = ImeAction.Search),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text, imeAction = ImeAction.Search, capitalization = KeyboardCapitalization.Words),
         colors = TextFieldDefaults.outlinedTextFieldColors(unfocusedBorderColor = Green, leadingIconColor = Green)
     )
 }
