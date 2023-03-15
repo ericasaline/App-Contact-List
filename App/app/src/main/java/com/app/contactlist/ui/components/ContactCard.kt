@@ -1,7 +1,6 @@
 package com.app.contactlist.ui.components
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -38,11 +37,10 @@ fun ContactCard(contact: Contact) {
         Modifier
             .fillMaxWidth()
             .heightIn(40.dp)
-            .animateContentSize()
             .clickable { expanded = !expanded },
         shape = RoundedCornerShape(20),
-        elevation = 2.dp,
-        border = if(expanded) BorderStroke(1.dp, Green) else BorderStroke(1.dp, Color.Transparent)
+        border = if(expanded) BorderStroke(1.dp, Green) else BorderStroke(1.dp, Color.Transparent),
+        elevation = 1.dp
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             AsyncImage(
@@ -61,13 +59,12 @@ fun ContactCard(contact: Contact) {
                     text = contact.name,
                     fontSize = 20.sp,
                     fontFamily = FontFamily(Font(R.font.poppins_regular)),
-                    color = Green,
                     letterSpacing = 0.sp,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1
                 )
                 AnimatedVisibility(expanded) {
-                    Column {
+                    Column(Modifier.padding(end = 20.dp)) {
                         Row {
                             Image(
                                 painter = painterResource(id = R.drawable.ic_phone),
@@ -78,7 +75,6 @@ fun ContactCard(contact: Contact) {
                                 text = contact.number,
                                 fontSize = 16.sp,
                                 fontFamily = FontFamily(Font(R.font.poppins_light)),
-                                color = Green,
                                 letterSpacing = 0.sp,
                                 overflow = TextOverflow.Ellipsis,
                                 maxLines = 1,
@@ -96,7 +92,6 @@ fun ContactCard(contact: Contact) {
                                 text = contact.email,
                                 fontSize = 16.sp,
                                 fontFamily = FontFamily(Font(R.font.poppins_light)),
-                                color = Green,
                                 letterSpacing = 0.sp,
                                 overflow = TextOverflow.Ellipsis,
                                 maxLines = 1,
