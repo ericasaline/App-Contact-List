@@ -39,7 +39,7 @@ fun ContactCard(contact: Contact) {
             .heightIn(40.dp)
             .clickable { expanded = !expanded },
         shape = RoundedCornerShape(20),
-        border = if(expanded) BorderStroke(1.dp, Green) else BorderStroke(1.dp, Color.Transparent),
+        border = if(expanded) BorderStroke(2.dp, Green) else BorderStroke(1.dp, Color.Transparent),
         elevation = 1.dp
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
